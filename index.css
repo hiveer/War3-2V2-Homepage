@@ -12,3 +12,22 @@ body div {
     margin-right: 130px;
     margin-left: 130px;
 }
+
+body {
+  background: url("war3-background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100px;
+}
+
+div.transbox {
+    margin-left: 150px;
+    margin-right: 150px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transbox p {
+    font-weight: bold;
+    color: #000000;
