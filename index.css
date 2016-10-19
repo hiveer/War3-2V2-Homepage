@@ -2,15 +2,26 @@ h1 {
     text-align: center;
 }
 
-table,h2,h3,p {
-    margin-right: 260px;
-    margin-left: 260px;
-    text-align: justify;
+/* table,h2,h3,p { */
+    /* margin-right: 260px; */
+    /* margin-left: 260px; */
+    /* text-align: justify; */
+/* } */
+
+/* body div { */
+    /* margin-right: 130px; */
+    /* margin-left: 130px; */
+/* } */
+
+div#header {
+  margin-right: 130px;
+  margin-left: 130px;
 }
 
-body div {
-    margin-right: 130px;
-    margin-left: 130px;
+div#content {
+  margin-right: 260px;
+  margin-left: 260px;
+  text-align: justify;
 }
 
 body {
