@@ -2,23 +2,12 @@ h1 {
     text-align: center;
 }
 
-/* table,h2,h3,p { */
-    /* margin-right: 260px; */
-    /* margin-left: 260px; */
-    /* text-align: justify; */
-/* } */
-
-/* body div { */
-    /* margin-right: 130px; */
-    /* margin-left: 130px; */
-/* } */
-
-div#header {
+header {
   margin-right: 130px;
   margin-left: 130px;
 }
 
-div#content {
+section#content {
   margin-right: 260px;
   margin-left: 260px;
   text-align: justify;
@@ -30,7 +19,7 @@ body {
   height: 100px;
 }
 
-div.transbox {
+section.transbox {
     margin-left: 150px;
     margin-right: 150px;
     background-color: #ffffff;
@@ -39,6 +28,7 @@ div.transbox {
     filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 
-div.transbox p {
-    font-weight: bold;
+section.transbox p {
+    /* font-weight: bold; */
     color: #000000;
+}
