@@ -1,16 +1,15 @@
 h1 {
+    padding-top: 40px;
     text-align: center;
 }
 
-header {
-  margin-right: 130px;
-  margin-left: 130px;
-}
-
 section#content {
-  margin-right: 260px;
-  margin-left: 260px;
-  text-align: justify;
+  /* same effect as below */
+  /* margin-right: 260px; */
+  /* margin-left: 260px; */
+  /* text-align: justify; */
+  width: 700px;
+  margin: auto;
 }
 
 body {
@@ -20,15 +19,17 @@ body {
 }
 
 section.transbox {
-    margin-left: 150px;
-    margin-right: 150px;
+    /* margin-left: 150px; */
+    /* margin-right: 150px; */
+    width: 1000px;
+    margin: auto;
     background-color: #ffffff;
-    border: 1px solid black;
+    border: 1px  black;
     opacity: 0.7;
     filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 
 section.transbox p {
-    /* font-weight: bold; */
+    font-weight: normal;
     color: #000000;
 }
