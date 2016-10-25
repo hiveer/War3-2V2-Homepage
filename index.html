@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <link href="war3-2.jpg" rel="shortcut icon" type="image/x-icon">
+  <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
@@ -42,50 +44,65 @@
       <h3> 报名截止日期</h3>
         <p> 2016-10-31 <p>
       <h3> 报名入口</h3>
-        <p>
-          <a href=mailto:ljp.hiveer@gmail.com">报名入口</a>
-          <br/>
-          (如果上述链接不能直接打开您的邮箱，那么请您自行发送邮件到以下邮箱地址： ljp.hiveer@gmail.com)
-        </p>
+        <!-- <p> -->
+          <!-- <a href=mailto:ljp.hiveer@gmail.com">报名入口</a> -->
+          <!-- <br/> -->
+          <!-- (如果上述链接不能直接打开您的邮箱，那么请您自行发送邮件到以下邮箱地址： ljp.hiveer@gmail.com) -->
+        <!-- </p> -->
+        <!-- <form class="form-inline" role="form"> -->
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputNickname">群昵称</label>
+            <input type="text" class="form-control" id="exampleInputNickname" placeholder="群昵称">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPlatformId">平台ID</label>
+            <input type="text" class="form-control" id="exampleInputPlatformId" placeholder="平台ID">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputRace">种族</label>
+            <input type="text" class="form-control" id="exampleInputRace" placeholder="种族">
+          </div>
+          <button type="submit" class="btn btn-default" id="apply">提交</button>
+        <!-- </form> -->
        <hr />
       <h2> 已经报名的成员名单</h2>
       <!-- <table border='1' width="570" class="table table-striped"> -->
-      <table class="table table-striped">
+      <table class="table table-striped" id="apply-list">
         <tr>
           <th> 群昵称</th>
           <th> 平台ID </th>
           <th> 种族 </th>
         </tr>
-        <tr>
-          <td> chen567 </td>
-          <td> chen567 </td>
-          <td> 人族 </td>
-        </tr>
-        <tr>
-          <td> 嫣栖楠木 </td>
-          <td> 嫣栖楠木 </td>
-          <td> 兽族 </td>
-        </tr>
-        <tr>
-          <td> StoryTime。</td>
-          <td> WishMaster </td>
-          <td> 暗夜 </td>
-        </tr>
-        <tr>
-          <td> 瑞飏 </td>
-          <td> royla29 </td>
-          <td> 暗夜 </td>
-        </tr>
-        <tr>
-          <td> 不闭嘴的NE </td>
-          <td> ashman000 </td>
-          <td> 兽族 </td
-        </tr>
+        <!-- <tr> -->
+          <!-- <td> chen567 </td> -->
+          <!-- <td> chen567 </td> -->
+          <!-- <td> 人族 </td> -->
+        <!-- </tr> -->
+        <!-- <tr> -->
+          <!-- <td> 嫣栖楠木 </td> -->
+          <!-- <td> 嫣栖楠木 </td> -->
+          <!-- <td> 兽族 </td> -->
+        <!-- </tr> -->
+        <!-- <tr> -->
+          <!-- <td> StoryTime。</td> -->
+          <!-- <td> WishMaster </td> -->
+          <!-- <td> 暗夜 </td> -->
+        <!-- </tr> -->
+        <!-- <tr> -->
+          <!-- <td> 瑞飏 </td> -->
+          <!-- <td> royla29 </td> -->
+          <!-- <td> 暗夜 </td> -->
+        <!-- </tr> -->
+        <!-- <tr> -->
+          <!-- <td> 不闭嘴的NE </td> -->
+          <!-- <td> ashman000 </td> -->
+          <!-- <td> 兽族 </td -->
+        <!-- </tr> -->
       </table>
       <hr />
 
       <!-- 多说评论框 start -->
-        <div class="ds-thread" data-thread-key="War3-2V2-Homepage" data-title="魔兽与人生- 2V2 - 赛事主页" data-url="http://hiveerli.me/War3-2V2-Homepage"></div>
+      <div class="ds-thread" data-thread-key="War3-2V2-Homepage" data-title="魔兽与人生- 2V2 - 赛事主页" data-url="http://hiveerli.me/War3-2V2-Homepage"></div>
       <!-- 多说评论框 end -->
       <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
       <script type="text/javascript">
@@ -100,7 +117,6 @@
         })();
         </script>
       <!-- 多说公共JS代码 end -->
-
     </section>
   </section>
 </body>
