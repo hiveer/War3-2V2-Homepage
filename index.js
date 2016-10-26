@@ -1,12 +1,13 @@
+// LeanCloud 的原生的数据读写方式
 // 应用 ID，用来识别应用
-var APP_ID = "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz";
+// var APP_ID = "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz";
 // 应用 Key，用来校验权限（Web 端可以配置安全域名来保护数据安全）
-var APP_KEY = "UX3z5HDqeVE911LSHXfzrAqE";
+// var APP_KEY = "UX3z5HDqeVE911LSHXfzrAqE";
 // 初始化
-AV.init({
-  appId: APP_ID,
-  appKey: APP_KEY
-});
+// AV.init({
+  // appId: APP_ID,
+  // appKey: APP_KEY
+// });
 
 //  原始写数据的方式
 // var TestObject = AV.Object.extend('TestObject');
@@ -24,6 +25,7 @@ AV.init({
 //tobj.get('580e0bbd8ac247005b5dfcd0').then(function(data) {
 //  alert(data.get("nickname"));
 //}, function(error) {});
+//
 $(function(){
   var loadList = function() {
     $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
@@ -31,6 +33,7 @@ $(function(){
       headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
                   "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
       success: function(data){
+        $('#count').append(data.results.length)
         for(var i = 0 ; i < data.results.length; i++) {
           var row$ = $('<tr>');
           var nickName = data.results[i]['nickname'];
@@ -44,11 +47,11 @@ $(function(){
         }
       }
     });
-  }
+  };
 
   loadList();
 
-  $("#apply").click(function() {
+ $("#apply").click(function() {
     $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
     {
       method: "POST",
