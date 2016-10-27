@@ -52,6 +52,19 @@ $(function(){
   loadList();
 
  $("#apply").click(function() {
+    if($("#exampleInputNickname").val().trim() == '') {
+        alert("nickname 不能为空");
+        return
+      }
+    if($("#exampleInputPlatformId").val().trim() == '') {
+      alert("平台ID 不能为空");
+      return
+    }
+    if($("#exampleInputRace").val().trim() == '') {
+      alert("种族不能为空");
+      return
+    }
+
     $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
     {
       method: "POST",
