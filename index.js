@@ -49,8 +49,18 @@ $(function(){
     });
   };
 
+  // 超过10.31 号就停止报名
+  if(new Date() > new Date("2016/10/31 23:59:59")) {
+    $('#apply').attr("disabled", true);
+    $('#sign-up-entry').append("<strong style='color:red'>(报名已经截止)</strong>");
+    $('#list-header').html("公示名单");
+    $('#list-header').attr("style", "text-align:center;color:#33eeff");
+  }
+
+  // 加载一报名的成员名单
   loadList();
 
+ // 报名入口
  $("#apply").click(function() {
     if($("#exampleInputNickname").val().trim() == '') {
         alert("nickname 不能为空");
