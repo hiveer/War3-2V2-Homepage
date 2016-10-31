@@ -91,5 +91,73 @@ $(function(){
       error: function(error) {
         alert(error); }
     });
-  })
+  });
+
+  // 生成分组
+  $("#generate_group").click(function() {
+    $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
+    {
+      headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
+                  "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
+      success: function(data){
+        var shuffledList = shuffle(data.results);
+        for(var i = 0 ; i < shuffledList.length; i += 2) {
+          $.ajax("https://leancloud.cn:443/1.1/classes/group",
+          {
+            method: "POST",
+            headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
+                      "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
+            contentType: "application/json",
+            processData: false,
+            data: JSON.stringify({
+              left:shuffledList[i].platform_id,
+              right:shuffledList[i+1].platform_id,
+              status:''} )
+          });
+        }
+      }
+    });
+    $('#generate_group').attr("disabled", true);
+  });
+
+  // 获取随机分组列表
+  $.ajax("https://leancloud.cn:443/1.1/classes/group",
+  {
+    headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
+                "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
+    success: function(data){
+      $('#group_count').append($('<strong>').html(data.results.length))
+      for(var i = 0 ; i < data.results.length; i++) {
+        var row$ = $('<tr>');
+        var user1 = data.results[i]['left'];
+        row$.append($('<td>').html(user1));
+        var user2 = data.results[i]['right'];
+        row$.append($('<td>').html(user2));
+        var stats = data.results[i]['status'];
+        row$.append($('<td>').html(stats));
+        $("#group-list").append(row$);
+        // $("#apply-list").html(row$);
+      }
+    }
+  });
+
+  // 乱序排列
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
 });
