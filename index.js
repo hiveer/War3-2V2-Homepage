@@ -102,6 +102,9 @@ $(function(){
       success: function(data){
         var shuffledList = shuffle(data.results);
         for(var i = 0 ; i < shuffledList.length; i += 2) {
+        // for(var i = 0 ; i < 7; i += 2) {
+          var leftValue = shuffledList[i].platform_id + " - " + shuffledList[i].race;
+          var rightValue = shuffledList[i+1].platform_id + " - " + shuffledList[i+1].race;
           $.ajax("https://leancloud.cn:443/1.1/classes/group",
           {
             method: "POST",
@@ -110,8 +113,8 @@ $(function(){
             contentType: "application/json",
             processData: false,
             data: JSON.stringify({
-              left:shuffledList[i].platform_id,
-              right:shuffledList[i+1].platform_id,
+              left:leftValue,
+              right:rightValue,
               status:''} )
           });
         }
