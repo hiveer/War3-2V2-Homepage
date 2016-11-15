@@ -13,7 +13,7 @@ section#content {
 }
 
 body {
-  background: url("war3-background-optmized.jpg") no-repeat center center fixed;
+  background: url("images/war3-background-optmized.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100px;
 }
