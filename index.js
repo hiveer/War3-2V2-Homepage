@@ -26,234 +26,43 @@
 //  alert(data.get("nickname"));
 //}, function(error) {});
 //
-$(function(){
-  var loadList = function() {
-    $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
-    {
-      headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                  "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-      success: function(data){
-        $('#count').append($('<strong>').html(data.results.length))
-        for(var i = 0 ; i < data.results.length; i++) {
-          var row$ = $('<tr>');
-          var nickName = data.results[i]['nickname'];
-          row$.append($('<td>').html(nickName));
-          var platFormId = data.results[i]['platform_id'];
-          row$.append($('<td>').html(platFormId));
-          var race = data.results[i]['race'];
-          row$.append($('<td>').html(race));
-          $("#apply-list").append(row$);
-          // $("#apply-list").html(row$);
-        }
-      }
-    });
-  };
+//
+// 乱序数组
+require(["shuffle"], function(shuffle){
+})
 
-  // 超过10.31 号就停止报名
-  if(new Date() > new Date("2016/10/31 23:59:59")) {
-    $('#apply').attr("disabled", true);
-    $('#sign-up-entry').append("<strong style='color:red'>(报名已经截止)</strong>");
-    $('#list-header').html("公示名单");
-    $('#list-header').attr("style", "text-align:center;color:#33eeff");
-  }
+// 获取报名列表
+require(["sign_up_list"], function(signUpList) {
+})
 
-  // 加载一报名的成员名单
-  loadList();
+// 报名入口
+require(["sign_up"], function(signUp) {
+})
 
- // 报名入口
- $("#apply").click(function() {
-    if($("#exampleInputNickname").val().trim() == '') {
-        alert("nickname 不能为空");
-        return
-      }
-    if($("#exampleInputPlatformId").val().trim() == '') {
-      alert("平台ID 不能为空");
-      return
-    }
-    if($("#exampleInputRace").val().trim() == '') {
-      alert("种族不能为空");
-      return
-    }
+// 生成随机分组
+require(["randomize_group"], function(randomizeGroup) {
+})
 
-    $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
-    {
-      method: "POST",
-      headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                 "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-      contentType: "application/json",
-      processData: false,
-      // data: '{"nickname":"'+$("#exampleInputNickname").val()+'","platform_id":"'+$("#exampleInputPlatformId").val()+'","race":"'+$("#exampleInputRace").val()+'"}',
-      data: JSON.stringify( {nickname:$("#exampleInputNickname").val(), platform_id:$("#exampleInputPlatformId").val(), race: $("#exampleInputRace").val()} ),
-      success: function(data) {
-        window.location.reload();
-        alert("报名成功，请查看已报名人员名单！")
-      },
-      error: function(error) {
-        alert(error); }
-    });
-  });
+// 获取随机分组列表
+require(["randomized_group_list"], function(randomizedGroupList) {
+})
 
-  // 生成分组
-  $("#generate_group").click(function() {
-    $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
-    {
-      headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                  "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-      success: function(data){
-        var shuffledList = shuffle(data.results);
-        for(var i = 0 ; i < shuffledList.length; i += 2) {
-        // for(var i = 0 ; i < 7; i += 2) {
-          var leftValue = shuffledList[i].platform_id + " - " + shuffledList[i].race;
-          var rightValue = shuffledList[i+1].platform_id + " - " + shuffledList[i+1].race;
-          $.ajax("https://leancloud.cn:443/1.1/classes/group",
-          {
-            method: "POST",
-            headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                      "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-            contentType: "application/json",
-            processData: false,
-            data: JSON.stringify({
-              left:leftValue,
-              right:rightValue,
-              status:''} )
-          });
-        }
-      }
-    });
-    $('#generate_group').attr("disabled", true);
-  });
+// 生成第一轮对战列表
+require(["randomize_first_round_group"], function(randomizefirstRoundGroup) {
+})
 
-  // 生成第一轮分组列表
-  $("#generate_round_one").click(function() {
-    $.ajax("https://leancloud.cn:443/1.1/classes/group",
-    {
-      headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                  "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-      success: function(data){
-        var shuffledList = shuffle(data.results);
-        for(var i = 0 ; i < shuffledList.length; i++) {
-          var result = shuffledList[i];
-          if(i < Math.ceil(shuffledList.length/2)) {
-            $.ajax("https://leancloud.cn:443/1.1/classes/first_round_a",
-            {
-              method: "POST",
-              headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                        "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-              contentType: "application/json",
-              processData: false,
-              data: JSON.stringify({
-                left:result.left,
-                right:result.right,
-                status:''} )
-            });
-          }
-          else {
-            $.ajax("https://leancloud.cn:443/1.1/classes/first_round_b",
-            {
-              method: "POST",
-              headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                        "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-              contentType: "application/json",
-              processData: false,
-              data: JSON.stringify({
-                left:result.left,
-                right:result.right,
-                status:''} )
-            });
-          }
-        }
-      }
-    });
-    $('#generate_round_one').attr("disabled", true);
-  });
+// 获取第一轮A 组对战列表
+require(["first_round_a_group_list"], function(firstRoundAGroupList) {
+})
 
-  // 获取随机分组列表
-  $.ajax("https://leancloud.cn:443/1.1/classes/group",
-  {
-    headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-    success: function(data){
-      $('#group_count').append($('<strong>').html(data.results.length))
-      for(var i = 0 ; i < data.results.length; i++) {
-        var row$ = $('<tr>');
-        var user1 = data.results[i]['left'];
-        row$.append($('<td>').html(user1));
-        var user2 = data.results[i]['right'];
-        row$.append($('<td>').html(user2));
-        var stats = data.results[i]['status'];
-        row$.append($('<td>').html(stats));
-        $("#group-list").append(row$);
-      }
-    }
-  });
+// 获取第一轮B 组对战列表
+require(["first_round_b_group_list"], function(firstRoundBGroupList) {
+})
 
-  // 获取第一轮分组A组列表
-  $.ajax("https://leancloud.cn:443/1.1/classes/first_round_a",
-  {
-    headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-    success: function(data){
-      for(var i = 0 ; i < data.results.length; i += 2) {
-        var row$ = $('<tr>');
-        var team1 = data.results[i]['left'] + ', ' + data.results[i]['right'];
-        row$.append($('<td>').html(team1));
-        var team1Status = data.results[i]['status'];
-        row$.append($('<td>').html(team1Status));
-        row$.append($('<td>').html('VS'));
-        var team2 = data.results[i+1]['left'] + ', ' + data.results[i+1]['right'];
-        row$.append($('<td>').html(team2));
-        var team2Status = data.results[i+1]['status'];
-        row$.append($('<td>').html(team2Status));
-        $("#first-round-a").append(row$);
-      }
-    }
-  });
-
-  // 获取第一轮分组B组列表
-  $.ajax("https://leancloud.cn:443/1.1/classes/first_round_b",
-  {
-    headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
-                "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
-    success: function(data){
-      for(var i = 0 ; i < data.results.length; i += 2) {
-        var row$ = $('<tr>');
-        var team1 = data.results[i]['left'] + ', ' + data.results[i]['right'];
-        row$.append($('<td>').html(team1));
-        if(i == 10) {var team1Status = "晋级"} else {
-        var team1Status = data.results[i]['status'];
-        };
-        row$.append($('<td>').html(team1Status));
-        row$.append($('<td>').html('VS'));
-        if(i == 10) { var team2 = ""} else {
-        var team2 = data.results[i+1]['left'] + ', ' + data.results[i+1]['right'];
-        };
-        row$.append($('<td>').html(team2));
-        if(i == 10) {var team2Status = ""} else {
-        var team2Status = data.results[i+1]['status'];
-        };
-        row$.append($('<td>').html(team2Status));
-        $("#first-round-b").append(row$);
-      }
-    }
-  });
-
-  // 乱序排列
-  function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }
-});
+// 超过10.31 号就停止报名
+if(new Date() > new Date("2016/10/31 23:59:59")) {
+  $('#apply').attr("disabled", true);
+  $('#sign-up-entry').append("<strong style='color:red'>(报名已经截止)</strong>");
+  $('#list-header').html("公示名单");
+  $('#list-header').attr("style", "text-align:center;color:#33eeff");
+}
