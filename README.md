@@ -4,4 +4,4 @@
 
 http://hiveerli.me/War3-2V2-Homepage/
 
-<img src="22game.jpg">
+<img src="images/22game.jpg">
