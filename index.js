@@ -28,35 +28,35 @@
 //
 //
 // 乱序数组
-require(["shuffle"], function(shuffle){
+require(["javascripts/shuffle"], function(shuffle){
 })
 
 // 获取报名列表
-require(["sign_up_list"], function(signUpList) {
+require(["javascripts/sign_up_list"], function(signUpList) {
 })
 
 // 报名入口
-require(["sign_up"], function(signUp) {
+require(["javascripts/sign_up"], function(signUp) {
 })
 
 // 生成随机分组
-require(["randomize_group"], function(randomizeGroup) {
+require(["javascripts/randomize_group"], function(randomizeGroup) {
 })
 
 // 获取随机分组列表
-require(["randomized_group_list"], function(randomizedGroupList) {
+require(["javascripts/randomized_group_list"], function(randomizedGroupList) {
 })
 
 // 生成第一轮对战列表
-require(["randomize_first_round_group"], function(randomizefirstRoundGroup) {
+require(["javascripts/randomize_first_round_group"], function(randomizefirstRoundGroup) {
 })
 
 // 获取第一轮A 组对战列表
-require(["first_round_a_group_list"], function(firstRoundAGroupList) {
+require(["javascripts/first_round_a_group_list"], function(firstRoundAGroupList) {
 })
 
 // 获取第一轮B 组对战列表
-require(["first_round_b_group_list"], function(firstRoundBGroupList) {
+require(["javascripts/first_round_b_group_list"], function(firstRoundBGroupList) {
 })
 
 // 超过10.31 号就停止报名
