@@ -1,4 +1,4 @@
-defind(function(){
+define(function(){
   $("#generate_round_one").click(function() {
     $.ajax("https://leancloud.cn:443/1.1/classes/group",
     {
