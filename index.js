@@ -59,6 +59,9 @@ require(["javascripts/first_round_a_group_list"], function(firstRoundAGroupList)
 require(["javascripts/first_round_b_group_list"], function(firstRoundBGroupList) {
 })
 
+// 获取第二轮对战列表
+require(["javascripts/second_round_group_list"], function(secondRoundGroupList) {
+})
 // 超过10.31 号就停止报名
 if(new Date() > new Date("2016/10/31 23:59:59")) {
   $('#apply').attr("disabled", true);

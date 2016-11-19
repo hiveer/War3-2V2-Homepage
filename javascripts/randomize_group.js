@@ -1,4 +1,4 @@
-define(["shuffle"], function(shuffle){
+define(["./shuffle"], function(shuffle){
   $("#generate_group").click(function() {
     $.ajax("https://leancloud.cn:443/1.1/classes/apply_record",
     {
