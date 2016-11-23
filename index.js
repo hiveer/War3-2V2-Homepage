@@ -62,6 +62,11 @@ require(["javascripts/first_round_b_group_list"], function(firstRoundBGroupList)
 // 获取第二轮对战列表
 require(["javascripts/second_round_group_list"], function(secondRoundGroupList) {
 })
+
+// 生成第三轮分组
+require(["javascripts/randomize_third_round_group"], function(randomizeThirdRoundGroup) {
+})
+
 // 超过10.31 号就停止报名
 if(new Date() > new Date("2016/10/31 23:59:59")) {
   $('#apply').attr("disabled", true);
