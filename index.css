@@ -59,5 +59,11 @@ section.transbox {
 
 section.transbox p {
     font-weight: normal;
-    color: #000000;
+    /* color: #000000; */
 }
+
+td p {
+  margin: 0;
+  color: green;
+}
+
