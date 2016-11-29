@@ -1,6 +1,6 @@
 define(["./shuffle"], function(shuffle){
   $("#generate_round_three").click(function() {
-    $.ajax("https://leancloud.cn:443/1.1/classes/first_round_a",
+    $.ajax("https://leancloud.cn:443/1.1/classes/second_round",
     {
       headers: { "X-LC-Id": "u13g5ML53PDR4dponmtvMQRu-gzGzoHsz",
                   "X-LC-Key": "UX3z5HDqeVE911LSHXfzrAqE" },
