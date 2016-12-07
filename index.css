@@ -67,3 +67,15 @@ td p {
   color: green;
 }
 
+#third_winner {
+  color: #B8860B;
+}
+
+#second_winner {
+  color: #B0C4DE;
+}
+
+#first_winner {
+  color: #FFD700;
+}
+
