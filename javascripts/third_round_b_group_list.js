@@ -10,6 +10,8 @@ define(function(){
         row$.append($('<td>').html(team));
         var teamScore = data.results[i]['score'];
         row$.append($('<td>').html(teamScore));
+        var notes = data.results[i]['notes'];
+        row$.append($('<td>').html(notes));
         $("#third-round-b").append(row$);
       }
     }
