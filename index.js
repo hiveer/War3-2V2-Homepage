@@ -75,6 +75,18 @@ require(["javascripts/third_round_a_group_list"], function(thirdRoundAGroupList)
 require(["javascripts/third_round_b_group_list"], function(thirdRoundBGroupList) {
 })
 
+// 获取半决赛分组列表
+require(["javascripts/semifinal_round_group_list"], function(semifinalRoundGroupList) {
+})
+
+// 获取败者组决赛分组列表
+require(["javascripts/losers_bracket_finals"], function(losersBracketFinals) {
+})
+
+// 获取胜者组决赛分组列表
+require(["javascripts/winners_bracket_finals"], function(winnersBracketFinals) {
+})
+
 // 超过10.31 号就停止报名
 if(new Date() > new Date("2016/10/31 23:59:59")) {
   $('#apply').attr("disabled", true);
